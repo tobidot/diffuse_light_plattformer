@@ -1,0 +1,27 @@
+{
+  "name": "client-diffuse-light-plattformer",
+  "version": "0.0.0",
+  "description": "ClientDiffuseLightPlattformer",
+  "main": "./src/index.js",
+  "author": {
+    "name": "tobidot"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "start webpack --watch && start http-server ./dist && start \"debug\" \"D:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\" \"127.0.0.1:8080/index.html\"",
+    "clean": "webpack --clean"
+  },
+  "devDependencies": {
+    "@types/node": "^8.10.54",
+    "file-loader": "^4.2.0",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.2.2",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "ts-key-enum": "^2.0.0"
+  }
+}
