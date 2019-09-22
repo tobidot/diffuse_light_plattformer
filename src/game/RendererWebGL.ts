@@ -1,7 +1,6 @@
 ﻿import { MapRenderer } from "./Map";
 import Field from "./Field";
 import Camera from "./Camera";
-import Point from "./Point";
 
 class RayResult {
     public x: number = 0;
@@ -10,8 +9,8 @@ class RayResult {
     public distance: number = 0;
 }
 
-
-export default class MapRendererBufferImage implements MapRenderer {
+/*
+export default class RendererWebGL implements MapRenderer {
 
     private resolution_width: number;
     private resolution_height: number;
@@ -19,8 +18,10 @@ export default class MapRendererBufferImage implements MapRenderer {
     private map_height: number;
     private image_data: ImageData;
     private current_fields_array: Array<Field>;
+    private camera_x: number;
+    private camera_y: number;
+    private camera_zoom: number;
     private camera: Camera;
-
 
     constructor(resolution_width: number, resolution_height: number, map_width: number, map_height: number) {
         this.resolution_width = resolution_width;
@@ -29,7 +30,10 @@ export default class MapRendererBufferImage implements MapRenderer {
         this.map_height = map_height;
         this.image_data = new ImageData(resolution_width, resolution_height);
         this.current_fields_array = new Array<Field>();
-        this.camera = new Camera(resolution_width, resolution_height);
+        this.camera_x = 0;
+        this.camera_y = 0;
+        this.camera_zoom = 1;
+        this.camera = new Camera();
     }
 
     public draw(target: RenderingContext, fields: Array<Field>): void {
@@ -40,8 +44,11 @@ export default class MapRendererBufferImage implements MapRenderer {
         this.current_fields_array = fields;
         for (let x = 0; x < this.resolution_width; ++x) {
             for (let y = 0; y < this.resolution_height; ++y) {
-                let ray_start = this.camera.camera_to_world_coordinates(new Point(x / this.resolution_width - 0.5, y / this.resolution_height - 0.5, 50));
-                let ray_result = this.trace_ray(ray_start, max_ray_distance);
+                let ray_position = 
+                let ray_position_x = (x - this.resolution_width / 2) / this.camera_zoom + this.camera_x;
+                let ray_position_y = (y - this.resolution_height / 2) / this.camera_zoom + this.camera_y;
+                let ray_position_z = 50;
+                let ray_result = this.trace_ray([ray_position_x, ray_position_y, ray_position_z], max_ray_distance);
                 let color = [127, 127, 127, 255];
                 if (ray_result !== false) {
                     color = this.get_color_at_position(Math.trunc(ray_result.x), Math.trunc(ray_result.y));
@@ -63,18 +70,15 @@ export default class MapRendererBufferImage implements MapRenderer {
     }
 
     public set_camera(x: number, y: number, zoom: number) {
-        this.camera.position.x = x;
-        this.camera.position.y = y;
-        this.camera.zoom = zoom;
+        this.camera_x = x;
+        this.camera_y = y;
+        this.camera_zoom = zoom;
     }
 
 
-    private trace_ray(ray: Point, max_iterations: number): RayResult | false {
+    private trace_ray(ray: [number, number, number], max_iterations: number): RayResult | false {
         let iterations = 0;
-        let x, y, z;
-        x = ray.x;
-        y = ray.y;
-        z = ray.z;
+        let [x, y, z] = ray;
         let vx = 0, vy = 0, vz = -1;
 
         // START --- define demo diffusing object
@@ -122,3 +126,4 @@ export default class MapRendererBufferImage implements MapRenderer {
         return this.current_fields_array[x + y * this.map_width];
     }
 }
+*/

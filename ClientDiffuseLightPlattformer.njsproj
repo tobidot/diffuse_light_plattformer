@@ -33,6 +33,9 @@
   <ItemGroup>
     <Content Include="dist\index.html" />
     <Content Include="dist\index.js" />
+    <Content Include="src\game\RendererWebGL.ts">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\webgl\shader_compiling.ts">
       <SubType>Code</SubType>
     </Content>
@@ -58,7 +61,13 @@
     <Folder Include="src\webgl\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\game\Camera.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\game\Field.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\game\Point.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\html-elements\FPSDisplay.ts">
