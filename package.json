@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ts-key-enum": "^2.0.0"
   }
 }
